@@ -1,0 +1,78 @@
+.titulo-depoimentos{
+	background-color: #0275D8;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	color:#FFF;
+	margin-bottom: 0;
+	font-size: 25px;
+}
+/* height para html e body é para permitir que a imagem do header seja 100% de altura*/
+html,
+body{height: 100%;}
+
+.grupo-radio, 
+.contato-select{
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+footer{
+	background-color:#333;
+	color:#FFF;
+	padding-top:20px;
+	margin-top:10px;
+}
+
+header h1{
+	margin-bottom: 0;
+	margin-top: 0;
+	position: relative;
+}
+
+.topCasaFina-banner{
+	color:#FFF;
+	background-color: rgba(0,0,0,0.5);
+	padding: 20px;
+	width: 80%;
+	border-radius: 10px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	transition: 0.8s; /*tempo de transição entre mudanças que este sofrer*/
+	z-index: 10;
+}
+.navbar-default{
+	z-index: 10000;
+}
+
+@media(min-width: 768px){
+	.painel-responsivo{
+		width: 50%;
+		float: left;
+	}
+}
+@media(min-width: 992px){
+	.topCasaFina-banner{
+		width: 60%;
+	}
+}
+
+#modal-login{
+    margin-top: 60px;
+}
+
+#modal-usuario{
+     margin-top: 60px;
+}
+
+#cad-usu {
+    margin-top: 30px;
+}
+#bar{
+    margin-top: 0%;
+}
+body{
+    margin-top: 0;
+}
