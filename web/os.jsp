@@ -37,7 +37,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse topo" id="navbar-principal">
                         <ul class="nav navbar-nav">
-                            <li><a href="#historico">Historico</a></li>
+                            <li><a href="./hist.jsp">Historico</a></li>
+                            
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a><span class="glyphicon glyphicon-user"></span> 
@@ -63,10 +64,9 @@
 
         <!-- ordem de serviço-->
         <div class="container">
-            <form action="./os" method="POST">
+            <form action="./os.jsp" method="POST">
                 <div class="row">
                     <div class="form-group col-md-8">
-                        <input type="hidden" name="cmd" value="registrar" >
                         <label for="prod">Produto</label>
                         <input type="text" class="form-control" id="prod" name="prod" required="Preencha">
                     </div>
@@ -112,7 +112,7 @@
 
                 <div class="row">
                     <div class="form-group col-md-12 text-center">
-                        <button type="submit" name="acao" value="registrar" class="btn btn-success btn-block">Registrar</button>
+                        <button type="submit" name="action" value="registrar" class="btn btn-success btn-block">Registrar</button>
                     </div>
                 </div>
             </form>

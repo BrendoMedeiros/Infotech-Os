@@ -18,6 +18,10 @@ public class OrdemDeServicoModel {
         this.osIdUsu = osIdUsu;
     }
 
+    public OrdemDeServicoModel(String probConst) {
+        this.probConst =  probConst;
+    }
+
     public OrdemDeServicoModel(String produto, String marca, String modelo, String probInfor, String status, String probConst, LocalDate data, int osIdUsu) {
         this.produto = produto;
         this.marca = marca;
@@ -41,6 +45,14 @@ public class OrdemDeServicoModel {
         this.osIdUsu = osIdUsu;
     }
 
+    public OrdemDeServicoModel(String produto, String marca, String modelo, String probInfor, String status, String probConst, String data, String osIdUsu) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public OrdemDeServicoModel(int idOs, String produto, String marca, String modelo, String probInfor, String status, String probConst, String data, String osIdUsu) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public int getIdOs() {
         return idOs;
     }

@@ -41,9 +41,9 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse topo" id="navbar-principal">
-                        <!--                        <ul class="nav navbar-nav">
-                                                    <li><a href="#historico">Historico</a></li>
-                                                </ul>-->
+                        <ul class="nav navbar-nav">
+                            <li><a href="./os.jsp">Abrir outra OS</a></li>
+                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a><span class="glyphicon glyphicon-user"></span> 
                                         <%
@@ -78,7 +78,7 @@
 
                         <p> Tem certeza de que deseja sair do seu usuario? </p>
                         <div class="form-group col-md-6 text-left">
-                            <button type="button"  class="btn btn-success">Sair</button>
+                            <a role="button" aria-disabled="true" href="./principalOs.jsp" class="btn btn-success">Sair</a>
                         </div>
 
                     </div>
