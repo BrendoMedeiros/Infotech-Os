@@ -18,12 +18,7 @@
         <link href="css/estiloOs.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <%          
-            String idSessao = request.getSession().getAttribute("idUsuario").toString();
-            if (idSessao.equals("")) {
-                request.getRequestDispatcher("./index.jsp").forward(request, response);
-            }
-        %>
+
         <header>
             <!-- menu -->
             <nav id="bar" class="navbar navbar-default">
@@ -139,6 +134,7 @@
                             body += "<td>" + dados.probConst + "</td>";
                             body += "<td>" + dados.data + "</td>";
 
+                            
                             body += "<td> <button type=\"button\" onClick=\"abreGerenciadorFotos(" + dados.idOs + ");\" class=\" btn btn-sm btn-default\"><span class=\"glyphicon glyphicon-camera\"></span></button> </td>";
                             body += "</tr>";
                             $("#tbody").append(body);
@@ -156,7 +152,7 @@
                     url: './os',
                     columns: {
                         identifier: [0, 'id'],
-                        editable: [[1, 'produto'], [2, 'marca'], [3, 'modelo'], [4, 'probInfor'], [5, 'valores', '{"1": "A", "2": "AN", "3": "F"}']]
+                        editable: [[6, 'probConst']]
                     },
                     onDraw: function () {
                         console.log('onDraw()');

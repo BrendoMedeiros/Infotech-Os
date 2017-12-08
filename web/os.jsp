@@ -5,6 +5,7 @@
 <!doctype html>
 <html>
     <head>
+       
         <meta charset="utf-8">
         <title></title>
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -13,12 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <%
-            String idSessao = request.getSession().getAttribute("idUsuario").toString();
-            if (idSessao.equals("")) {
-                request.getRequestDispatcher("./index.jsp").forward(request, response);
-            }
-        %>
+
         <header>
             <!-- menu -->
             <nav class="navbar navbar-default">
@@ -64,7 +60,7 @@
 
         <!-- ordem de serviço-->
         <div class="container">
-            <form action="./os.jsp" method="POST">
+            <form action="./os" method="POST">
                 <div class="row">
                     <div class="form-group col-md-8">
                         <label for="prod">Produto</label>

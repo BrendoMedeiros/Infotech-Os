@@ -27,76 +27,36 @@ public class OrdemDeServicoServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             String idSessao = session.getAttribute("idUsuario").toString();
-
-            String action = request.getParameter("action");
-
-            if (action.equals("edit")) {
-                OrdemDeServicoDAO dao = new OrdemDeServicoDAO();
-
-                String produto = request.getParameter("produto");
-                String marca = request.getParameter("marca");
-                String modelo = request.getParameter("modelo");
-                String probInfor = request.getParameter("probInfor");
-                String status = request.getParameter("status");
-                String probConst = request.getParameter("probConst");
-                String data = request.getParameter("data");
-                String osIdUsu = request.getParameter("osIdUsu");
-
-                OrdemDeServicoModel servico = new OrdemDeServicoModel(produto, marca, modelo, probInfor, status, probConst, data, osIdUsu);
-                JSONObject dados = new JSONObject();
-                dados = new JSONObject();
-
-                try {
-
-                    dao.atualizar(servico);
-
-                } catch (Exception e) {
-                    dados.put("error", e.getMessage());
-                }
-
-                dados.put("resp", "ok");
-                out.print(dados);
-
-            } else if (action.equals("excluir")) {
-
-                OrdemDeServicoDAO dao = new OrdemDeServicoDAO();
-                int idOs = Integer.parseInt((request.getParameter("id") != null) ? request.getParameter("id") : "0"
-                );
-                String produto = request.getParameter("produto");
-                String marca = request.getParameter("marca");
-                String modelo = request.getParameter("modelo");
-                String probInfor = request.getParameter("probInfor");
-                String status = request.getParameter("status");
-                String probConst = request.getParameter("probConst");
-                String data = request.getParameter("data");
-                String osIdUsu = request.getParameter("osIdUsu");
-
-                OrdemDeServicoModel servico = new OrdemDeServicoModel(idOs, produto, marca, modelo, probInfor, status, probConst, data, osIdUsu);
-                JSONObject dados = new JSONObject();
-                dados = new JSONObject();
-
-                try {
-
-                    dao.excluir(servico);
-
-                } catch (Exception e) {
-                    dados.put("error", e.getMessage());
-                }
-                dados.put("resp", "ok");
-                out.print(dados);
-            }
-
             if (idSessao.equals("")) {
                 request.getRequestDispatcher("./index.jsp").forward(request, response);
             }
-            //String action = request.getParameter("action");
-            String produto = request.getParameter("prod");
-            String marca = request.getParameter("marca");
-            String modelo = request.getParameter("modelo");
-            String probInfor = request.getParameter("probInfor");
-            String status = request.getParameter("status");
-            String data = request.getParameter("data");
+            String idOs = null;
+            String action = request.getParameter("action");
 
+            String probConst = null;
+            String produto = null;
+            String marca = null;
+            String modelo = null;
+            String probInfor = null;
+            String status = null;
+            String data = null;
+
+            if (action.equals("edit") || action.equals("registrar")) {
+                idOs = request.getParameter("id");
+                probConst = request.getParameter("probConst");
+                produto = request.getParameter("prod");
+                marca = request.getParameter("marca");
+                modelo = request.getParameter("modelo");
+                probInfor = request.getParameter("probInfor");
+                status = request.getParameter("status");
+                data = request.getParameter("data");
+            } else {
+                idOs = request.getParameter("id");
+
+            }
+            OrdemDeServicoDAO dao = new OrdemDeServicoDAO();
+            JSONObject dados = new JSONObject();
+            OrdemDeServicoModel os = null;
             switch (action) {
                 case "registrar":
                     try {
@@ -114,9 +74,41 @@ public class OrdemDeServicoServlet extends HttpServlet {
                 case "listaCadastroDeServico":
                     this.buscaCadastroDeOs(request, response);
                     break;
+                case "delete":
+                    dao = new OrdemDeServicoDAO();
+                    dados = new JSONObject();
+                    os = new OrdemDeServicoModel(Integer.parseInt(idOs), probConst);
+
+                    try {
+
+                        dao.excluir(os);
+
+                    } catch (Exception e) {
+                        dados.put("error", e.getMessage());
+                    }
+                    dados.put("resp", "ok");
+                    break;
+                    
+                case "edit":
+                    dao = new OrdemDeServicoDAO();
+                    dados = new JSONObject();
+                    os = new OrdemDeServicoModel(Integer.parseInt(idOs), probConst);
+
+                    try {
+
+                        dao.atualizarOs(os);
+
+                    } catch (Exception e) {
+                        dados.put("error", e.getMessage());
+                    }
+                    dados.put("resp", "ok");
+                    out.print(dados);
+                    break;
                 default:
                     request.getRequestDispatcher("./principalOs.jsp").forward(request, response);
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

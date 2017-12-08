@@ -48,10 +48,60 @@ public class OrdemDeServicoDAO implements DAO {
         }
 
     }
+  public void atualizarOs(Object ob) throws Exception {
 
+        OrdemDeServicoModel os = (OrdemDeServicoModel) ob;
+
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String SQL = "UPDATE `ordemdeservico` SET `probConst`= ? WHERE `idOs`= ?";
+            conn = ConnectionDAO.getConnection();
+            ps = conn.prepareStatement(SQL);
+
+            ps.setString(1, os.getProbConst());
+            ps.setInt(2, os.getIdOs());
+            
+            int resp = ps.executeUpdate();
+            if (resp == 0) {
+                throw new Exception("Ocorreu um erro! Nada foi feito!");
+            }
+
+        } catch (Exception ex) {
+            throw new Exception("Erro ao alterar dados: \n" + ex);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+
+    }
     @Override
     public void excluir(Object ob) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        OrdemDeServicoModel os = (OrdemDeServicoModel) ob;
+
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String SQL = "DELETE FROM `ordemdeservico` WHERE `idOs`= ?";
+            conn = ConnectionDAO.getConnection();
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, os.getIdOs());
+           
+            int resp = ps.executeUpdate();
+            if (resp == 0) {
+                throw new Exception("Ocorreu um erro! Nada foi feito!");
+            }
+
+        } catch (Exception ex) {
+            throw new Exception("Erro ao alterar dados: \n" + ex);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+
     }
 
     @Override
