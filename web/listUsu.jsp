@@ -36,9 +36,6 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse topo" id="navbar-principal">
-<!--                        <ul class="nav navbar-nav">
-                            <li><a href="./os.jsp">Abrir outra OS</a></li>
-                        </ul>-->
                         <ul class="nav navbar-nav navbar-right">
                             <li><a><span class="glyphicon glyphicon-user"></span> 
                                         <%
@@ -88,13 +85,13 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Produto</th>
-                            <th>Marca</th>
-                            <th>Modelo</th>
-                            <th>Problema Informado</th>
-                            <th>Status</th>
-                            <th>Problema Constatado</th>
-                            <th>Data</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Endereco</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Senha</th>
+                            <th>Tipo</th>
                         </tr>
                     </thead>
                     <tbody id="tbody">     
@@ -110,7 +107,6 @@
         <script src="https://markcell.github.io/jquery-tabledit/assets/js/jquery.min.js"></script>
         <script src="https://markcell.github.io/jquery-tabledit/assets/js/bootstrap.min.js"></script>
         <script src="https://markcell.github.io/jquery-tabledit/assets/js/prettify.min.js"></script>
-        <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
 
         <script>
 
@@ -118,14 +114,14 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: './os?action=listaCadastroDeServico',
+                    url: './usuario?action=listaCadastroDeUsuario',
                     data: 'data',
                     mimeType: 'json',
                     success: function (retorno) {
                         var dados = retorno.data;
                         $.each(dados, function (i, dados) {
                             var body = "<tr>";
-                            body += "<td>" + dados.idOs + "</td>";
+                            body += "<td>" + dados. + "</td>";
                             body += "<td>" + dados.produto + "</td>";
                             body += "<td>" + dados.marca + "</td>";
                             body += "<td>" + dados.modelo + "</td>";
@@ -134,8 +130,6 @@
                             body += "<td>" + dados.probConst + "</td>";
                             body += "<td>" + dados.data + "</td>";
 
-                            
-//                            body += "<td> <button type=\"button\" onClick=\"abreGerenciadorFotos(" + dados.idOs + ");\" class=\" btn btn-sm btn-default\"><span class=\"glyphicon glyphicon-camera\"></span></button> </td>";
                             body += "</tr>";
                             $("#tbody").append(body);
                         });
@@ -152,7 +146,7 @@
                     url: './os',
                     columns: {
                         identifier: [0, 'id'],
-                        editable: [[6, 'probConst'],[5, 'status', '{"Aberto": "Aberto", "Em Andamento": "Em Andamento", "Finalizado": "Finalizado"}']]
+                        editable: [[6, 'probConst']]
                     },
                     onDraw: function () {
                         console.log('onDraw()');
@@ -179,12 +173,6 @@
                     }
                 });
             }
-
-//            function abreGerenciadorFotos(id) {
-//
-//                $("#iframeFotos").attr("src", "./Fotos?idProduto=" + id + "&cmd=listar");
-//                $("#janelaFotos").modal();
-//            }
         </script>
     </body>
 </html>

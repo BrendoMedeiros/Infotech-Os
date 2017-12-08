@@ -22,9 +22,10 @@ public class OrdemDeServicoModel {
         this.probConst =  probConst;
     }
 
-    public OrdemDeServicoModel(int idOs, String probConst) {
+    public OrdemDeServicoModel(int idOs, String probConst, String status) {
         this.idOs = idOs;
         this.probConst = probConst;
+        this.status = status;
     }
 
     public OrdemDeServicoModel(String produto, String marca, String modelo, String probInfor, String status, String probConst, LocalDate data, int osIdUsu) {

@@ -36,9 +36,9 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse topo" id="navbar-principal">
-<!--                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav">
                             <li><a href="./os.jsp">Abrir outra OS</a></li>
-                        </ul>-->
+                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a><span class="glyphicon glyphicon-user"></span> 
                                         <%
@@ -110,7 +110,6 @@
         <script src="https://markcell.github.io/jquery-tabledit/assets/js/jquery.min.js"></script>
         <script src="https://markcell.github.io/jquery-tabledit/assets/js/bootstrap.min.js"></script>
         <script src="https://markcell.github.io/jquery-tabledit/assets/js/prettify.min.js"></script>
-        <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
 
         <script>
 
@@ -133,9 +132,7 @@
                             body += "<td>" + dados.status + "</td>";
                             body += "<td>" + dados.probConst + "</td>";
                             body += "<td>" + dados.data + "</td>";
-
                             
-//                            body += "<td> <button type=\"button\" onClick=\"abreGerenciadorFotos(" + dados.idOs + ");\" class=\" btn btn-sm btn-default\"><span class=\"glyphicon glyphicon-camera\"></span></button> </td>";
                             body += "</tr>";
                             $("#tbody").append(body);
                         });
@@ -152,7 +149,7 @@
                     url: './os',
                     columns: {
                         identifier: [0, 'id'],
-                        editable: [[6, 'probConst'],[5, 'status', '{"Aberto": "Aberto", "Em Andamento": "Em Andamento", "Finalizado": "Finalizado"}']]
+                        editable: [[6, 'probConst']]
                     },
                     onDraw: function () {
                         console.log('onDraw()');
@@ -179,12 +176,6 @@
                     }
                 });
             }
-
-//            function abreGerenciadorFotos(id) {
-//
-//                $("#iframeFotos").attr("src", "./Fotos?idProduto=" + id + "&cmd=listar");
-//                $("#janelaFotos").modal();
-//            }
         </script>
     </body>
 </html>

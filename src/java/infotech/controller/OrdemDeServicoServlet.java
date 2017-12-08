@@ -77,7 +77,7 @@ public class OrdemDeServicoServlet extends HttpServlet {
                 case "delete":
                     dao = new OrdemDeServicoDAO();
                     dados = new JSONObject();
-                    os = new OrdemDeServicoModel(Integer.parseInt(idOs), probConst);
+                    os = new OrdemDeServicoModel(Integer.parseInt(idOs), probConst, status);
 
                     try {
 
@@ -92,7 +92,7 @@ public class OrdemDeServicoServlet extends HttpServlet {
                 case "edit":
                     dao = new OrdemDeServicoDAO();
                     dados = new JSONObject();
-                    os = new OrdemDeServicoModel(Integer.parseInt(idOs), probConst);
+                    os = new OrdemDeServicoModel(Integer.parseInt(idOs), probConst, status);
 
                     try {
 

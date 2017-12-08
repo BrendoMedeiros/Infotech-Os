@@ -33,7 +33,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse topo" id="navbar-principal">
                         <ul class="nav navbar-nav">
-                            <li><a href="./hist.jsp">Historico</a></li>
+                            <li><a href="./histUsu.jsp">Historico</a></li>
                             
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -86,9 +86,9 @@
 
                         <select type="text" class="form-control" id="status" name="status" required="">
                             <!--<select name="status">-->
-                            <option value="aberto">A</option>
-                            <option value="em andamento">AN</option>
-                            <option value="finalizado">F</option>
+                            <option value="aberto">Aberto</option>
+                            <option value="em andamento">Em Andamento</option>
+                            <option value="finalizado">Finalizado</option>
                         </select>
 
                     </div>
