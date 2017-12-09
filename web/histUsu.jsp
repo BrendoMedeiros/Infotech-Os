@@ -44,6 +44,8 @@
                                         <%
                                             try {
                                                 UsuariosDAO usuDao = new UsuariosDAO();
+                                                if(request.getSession().getAttribute("idUsuario")==null)
+                                                    response.sendRedirect("./principalOs.jsp");
                                                 Integer id = (Integer) request.getSession().getAttribute("idUsuario");
                                                 ArrayList<UsuariosModel> usuario = (ArrayList<UsuariosModel>) usuDao.procura(new UsuariosModel(id, null, null));
                                                 out.print(usuario.get(0).getNome());

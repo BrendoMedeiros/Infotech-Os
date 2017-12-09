@@ -58,7 +58,7 @@ public class OrdemDeServicoDAO implements DAO {
         ResultSet rs = null;
 
         try {
-            String SQL = "UPDATE `ordemdeservico` SET `probConst`= ? `status`= ? WHERE `idOs`= ?";
+            String SQL = "UPDATE `ordemdeservico` SET `probConst`= ?, `status`= ? WHERE `idOs`= ?";
             conn = ConnectionDAO.getConnection();
             ps = conn.prepareStatement(SQL);
             
@@ -145,6 +145,41 @@ public class OrdemDeServicoDAO implements DAO {
         try {
             conn = ConnectionDAO.getConnection();
             ps = conn.prepareStatement("SELECT `idOs`, `produto`, `marca`, `modelo`, `probInfor`, `status`, `probConst`, `data`, `osIdUsu` FROM `ordemdeservico` WHERE `osIdUsu` = ?");
+            ps.setInt(1, os.getOsIdUsu());
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                listaOs.add(new OrdemDeServicoModel(rs.getInt(1),
+                        rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getDate(8).toLocalDate(), rs.getInt(9)));
+            }
+
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+        return listaOs;
+
+    }
+    /**
+     * 
+     * @param ob
+     * @return lista de todas OSs de todos clientes
+     * @throws Exception 
+     */
+    public List procuraTodos(Object ob) throws Exception {
+
+        OrdemDeServicoModel os = (OrdemDeServicoModel) ob;
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        List<OrdemDeServicoModel> listaOs = new ArrayList<>();
+        try {
+            conn = ConnectionDAO.getConnection();
+            ps = conn.prepareStatement("SELECT `idOs`, `produto`, `marca`, `modelo`, `probInfor`, `status`, `probConst`, `data`, `osIdUsu` FROM `ordemdeservico`");
             ps.setInt(1, os.getOsIdUsu());
 
             rs = ps.executeQuery();
