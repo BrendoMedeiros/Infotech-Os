@@ -62,7 +62,7 @@ public class OrdemDeServicoServlet extends HttpServlet {
                         OrdemDeServicoDAO osDao = new OrdemDeServicoDAO();
                         osDao.salvarOs(new OrdemDeServicoModel(produto, marca, modelo, probInfor, status, "", LocalDate.parse(data), id));
                         request.setAttribute("sucesso", "OS Cadastrada com sucesso");
-                        request.getRequestDispatcher("./principalOs.jsp").forward(request, response);
+                        request.getRequestDispatcher("./histUsu.jsp").forward(request, response);
                     } catch (Exception e) {
                         request.setAttribute("erro", "Erro ao cadastrar OS:<br>" + e.getMessage());
                         request.getRequestDispatcher("./principalOs.jsp").forward(request, response);

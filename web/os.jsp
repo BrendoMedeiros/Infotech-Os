@@ -5,7 +5,7 @@
 <!doctype html>
 <html>
     <head>
-       
+
         <meta charset="utf-8">
         <title></title>
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -34,7 +34,7 @@
                     <div class="collapse navbar-collapse topo" id="navbar-principal">
                         <ul class="nav navbar-nav">
                             <li><a href="./histUsu.jsp">Historico</a></li>
-                            
+
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a><span class="glyphicon glyphicon-user"></span> 
@@ -59,8 +59,17 @@
         </header>
 
         <!-- ordem de serviço-->
-        <div class="container">
+        <div class="container">            
             <form action="./os" method="POST">
+                <%
+                    String s = request.getParameter("sucesso");
+                    if (s != null) {
+                         String mens = "<div class='alert alert-success'>"
+                                + " <strong>Sucesso!</strong> " + s + ""
+                                + "</div>";
+                        out.print(mens);
+                    } 
+                %>
                 <div class="row">
                     <div class="form-group col-md-8">
                         <label for="prod">Produto</label>
@@ -165,3 +174,6 @@
         <script src="./bootstrap/js/navbar-animation-fix.js" type="text/javascript"></script>
     </body>
 </html>
+
+
+
