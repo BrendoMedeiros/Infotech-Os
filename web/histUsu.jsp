@@ -86,7 +86,7 @@
         <!-- ordem de serviço-->
         <div class="container">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="cadastroDeOs">
+                <table class="table table-striped table-bordered" id="">
                     <thead>
                         <tr>
                             <th>#</th>

@@ -149,9 +149,8 @@ public class OrdemDeServicoDAO implements DAO {
                     + "   FROM `ordemdeservico` \n"
                     + "   INNER JOIN usuarios\n"
                     + "     ON usuarios.idUsu = ordemdeservico.osIdUsu \n"
-                    + " WHERE `osIdUsu` = ? ");
-            ps.setInt(1, os.getOsIdUsu());
-
+                    + " ");
+           
             rs = ps.executeQuery();
             while (rs.next()) {
 
