@@ -36,9 +36,9 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse topo" id="navbar-principal">
-<!--                        <ul class="nav navbar-nav">
-                            <li><a href="./os.jsp">Abrir outra OS</a></li>
-                        </ul>-->
+                        <!--                        <ul class="nav navbar-nav">
+                                                    <li><a href="./os.jsp">Abrir outra OS</a></li>
+                                                </ul>-->
                         <ul class="nav navbar-nav navbar-right">
                             <li><a><span class="glyphicon glyphicon-user"></span> 
                                         <%
@@ -95,6 +95,8 @@
                             <th>Status</th>
                             <th>Problema Constatado</th>
                             <th>Data</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
                         </tr>
                     </thead>
                     <tbody id="tbody">     
@@ -133,8 +135,10 @@
                             body += "<td>" + dados.status + "</td>";
                             body += "<td>" + dados.probConst + "</td>";
                             body += "<td>" + dados.data + "</td>";
+                            body += "<td>" + dados.nome + "</td>";
+                            body += "<td>" + dados.telefone + "</td>";
 
-                            
+
 //                            body += "<td> <button type=\"button\" onClick=\"abreGerenciadorFotos(" + dados.idOs + ");\" class=\" btn btn-sm btn-default\"><span class=\"glyphicon glyphicon-camera\"></span></button> </td>";
                             body += "</tr>";
                             $("#tbody").append(body);
@@ -152,7 +156,7 @@
                     url: './os',
                     columns: {
                         identifier: [0, 'id'],
-                        editable: [[6, 'probConst'],[5, 'status', '{"Aberto": "Aberto", "Em Andamento": "Em Andamento", "Finalizado": "Finalizado"}']]
+                        editable: [[6, 'probConst'], [5, 'status', '{"Aberto": "Aberto", "Em Andamento": "Em Andamento", "Finalizado": "Finalizado"}']]
                     },
                     onDraw: function () {
                         console.log('onDraw()');

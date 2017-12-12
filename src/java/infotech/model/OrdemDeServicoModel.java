@@ -13,6 +13,7 @@ public class OrdemDeServicoModel {
     private String probConst;
     private LocalDate data;
     private int osIdUsu;
+    private UsuariosModel usuariosModel; 
 
     public OrdemDeServicoModel(int osIdUsu) {
         this.osIdUsu = osIdUsu;
@@ -49,6 +50,19 @@ public class OrdemDeServicoModel {
         this.probConst = probConst;
         this.data = data;
         this.osIdUsu = osIdUsu;
+    }
+
+    public OrdemDeServicoModel(int idOs, String produto, String marca, String modelo, String probInfor, String status, String probConst, LocalDate data, int osIdUsu, UsuariosModel usuariosModel) {
+        this.idOs = idOs;
+        this.produto = produto;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.probInfor = probInfor;
+        this.status = status;
+        this.probConst = probConst;
+        this.data = data;
+        this.osIdUsu = osIdUsu;
+        this.usuariosModel = usuariosModel;
     }
 
     
@@ -122,6 +136,14 @@ public class OrdemDeServicoModel {
 
     public void setOsIdUsu(int osIdUsu) {
         this.osIdUsu = osIdUsu;
+    }
+
+    public UsuariosModel getUsuariosModel() {
+        return usuariosModel;
+    }
+
+    public void setUsuariosModel(UsuariosModel usuariosModel) {
+        this.usuariosModel = usuariosModel;
     }
 
 }

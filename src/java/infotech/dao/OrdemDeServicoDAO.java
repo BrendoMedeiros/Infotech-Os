@@ -3,6 +3,7 @@ package infotech.dao;
 import infotech.base.ConnectionDAO;
 import infotech.base.DAO;
 import infotech.model.OrdemDeServicoModel;
+import infotech.model.UsuariosModel;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -61,7 +62,7 @@ public class OrdemDeServicoDAO implements DAO {
             String SQL = "UPDATE `ordemdeservico` SET `probConst`= ?, `status`= ? WHERE `idOs`= ?";
             conn = ConnectionDAO.getConnection();
             ps = conn.prepareStatement(SQL);
-            
+
             ps.setString(1, os.getProbConst());
             ps.setString(2, os.getStatus());
             ps.setInt(3, os.getIdOs());
@@ -144,16 +145,27 @@ public class OrdemDeServicoDAO implements DAO {
         List<OrdemDeServicoModel> listaOs = new ArrayList<>();
         try {
             conn = ConnectionDAO.getConnection();
-            ps = conn.prepareStatement("SELECT `idOs`, `produto`, `marca`, `modelo`, `probInfor`, `status`, `probConst`, `data`, `osIdUsu` FROM `ordemdeservico` WHERE `osIdUsu` = ?");
+            ps = conn.prepareStatement("SELECT `idOs`, `produto`, `marca`, `modelo`, `probInfor`, `status`, `probConst`, `data`, `osIdUsu`, `nome`, `telefone`\n"
+                    + "   FROM `ordemdeservico` \n"
+                    + "   INNER JOIN usuarios\n"
+                    + "     ON usuarios.idUsu = ordemdeservico.osIdUsu \n"
+                    + " WHERE `osIdUsu` = ? ");
             ps.setInt(1, os.getOsIdUsu());
 
             rs = ps.executeQuery();
             while (rs.next()) {
 
-                listaOs.add(new OrdemDeServicoModel(rs.getInt(1),
-                        rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7), rs.getDate(8).toLocalDate(), rs.getInt(9)));
+                listaOs.add(new OrdemDeServicoModel(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getDate(8).toLocalDate(),
+                        rs.getInt(9), 
+                        new UsuariosModel(rs.getString(10), rs.getString(11))));
             }
 
         } catch (SQLException sqle) {
@@ -164,11 +176,12 @@ public class OrdemDeServicoDAO implements DAO {
         return listaOs;
 
     }
+
     /**
-     * 
+     *
      * @param ob
      * @return lista de todas OSs de todos clientes
-     * @throws Exception 
+     * @throws Exception
      */
     public List procuraTodos(Object ob) throws Exception {
 

@@ -25,14 +25,15 @@ public class UsuarioServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            HttpSession session = request.getSession();
-            String idSessao = session.getAttribute("idUsuario").toString();
-
-            if (idSessao.equals("")) {
-                request.getRequestDispatcher("./index.jsp").forward(request, response);
-            }
+//            HttpSession session = request.getSession();
+//            String idSessao = session.getAttribute("idUsuario").toString();
+//
+//            if (idSessao.equals("")) {
+//                request.getRequestDispatcher("./index.jsp").forward(request, response);
+//            }
 
             String acao = request.getParameter("acao");
+            
             String nome = request.getParameter("nome");
             String cpf = request.getParameter("cpf");
             String tel = request.getParameter("tel");
@@ -56,6 +57,27 @@ public class UsuarioServlet extends HttpServlet {
                 default:
                     request.getRequestDispatcher("./index.jsp").forward(request, response);
             }
+
+            switch (acao) {
+                case "cadastrarAdm":
+                    try {
+                        UsuariosDAO usuDao = new UsuariosDAO();
+                        int idUsuario = usuDao.salvarUsuario(new UsuariosModel(nome, cpf, end, tel, email, senha, "A"));
+                        if (idUsuario > 0) {
+                            request.getSession().setAttribute("idUsuario", idUsuario);
+                            request.getRequestDispatcher("./hist.jsp").forward(request, response);
+                        }
+
+                    } catch (Exception e) {
+                         System.out.println("\n\n\nErro:"+e.getMessage());
+                        request.getRequestDispatcher("./index.jsp").forward(request, response);
+                    }
+                default:
+                    request.getRequestDispatcher("./index.jsp").forward(request, response);
+            }
+
+        }catch(Exception e){
+            System.out.println("\n\n\nErro:"+e.getMessage());
         }
     }
 

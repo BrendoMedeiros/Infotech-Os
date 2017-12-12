@@ -86,7 +86,7 @@ public class OrdemDeServicoServlet extends HttpServlet {
                     }
                     dados.put("resp", "ok");
                     break;
-                    
+
                 case "edit":
                     dao = new OrdemDeServicoDAO();
                     dados = new JSONObject();
@@ -136,7 +136,7 @@ public class OrdemDeServicoServlet extends HttpServlet {
                 OrdemDeServicoDAO osDao = new OrdemDeServicoDAO();
                 ordens = (ArrayList<OrdemDeServicoModel>) osDao.procura(new OrdemDeServicoModel(id));
             } catch (Exception e) {
-
+                System.out.println(e.getMessage());
             }
 
             JSONObject pai = new JSONObject();
@@ -152,11 +152,15 @@ public class OrdemDeServicoServlet extends HttpServlet {
                 dados.put("status", os.getStatus());
                 dados.put("data", os.getData().format(DateTimeFormatter.ISO_LOCAL_DATE));
                 dados.put("probConst", os.getProbConst());
+                dados.put("nome", os.getUsuariosModel().getNome());
+                dados.put("telefone", os.getUsuariosModel().getTelefone());
                 filhos.add(dados);
             }
 
             pai.put("data", filhos);
             out.print(pai);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

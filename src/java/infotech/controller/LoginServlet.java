@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-                  
+
             String acao = request.getParameter("acao");
             String email = request.getParameter("email");
             String senha = request.getParameter("pwd");
@@ -30,8 +30,13 @@ public class LoginServlet extends HttpServlet {
                         UsuariosDAO usuDao = new UsuariosDAO();
                         ArrayList<UsuariosModel> usuario = (ArrayList<UsuariosModel>) usuDao.procuraUsuarioLogin(new UsuariosModel(0, email, senha));
                         if (usuario.size() > 0) {
-                            request.getSession().setAttribute("idUsuario", usuario.get(0).getIdUsu());
-                            request.getRequestDispatcher("./os.jsp").forward(request, response);
+                            if (usuario.get(0).getTipo().equals("A")) {
+                                request.getSession().setAttribute("idUsuario", usuario.get(0).getIdUsu());
+                                request.getRequestDispatcher("./hist.jsp").forward(request, response);
+                            } else {
+                                request.getSession().setAttribute("idUsuario", usuario.get(0).getIdUsu());
+                                request.getRequestDispatcher("./os.jsp").forward(request, response);
+                            }
                         } else {
                             request.getRequestDispatcher("./principalOs.jsp").forward(request, response);
                         }
@@ -39,6 +44,7 @@ public class LoginServlet extends HttpServlet {
                         request.getRequestDispatcher("./principalOs.jsp").forward(request, response);
                     }
                     break;
+
                 default:
                     request.getRequestDispatcher("./index.jsp").forward(request, response);
             }

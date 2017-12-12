@@ -17,6 +17,11 @@ public class UsuariosModel {
         this.senha = senha;
     }
 
+    public UsuariosModel(String nome, String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
     public UsuariosModel(String nome, String cpf, String endereco, String telefone, String email, String senha, String tipo) {
         this.nome = nome;
         this.cpf = cpf;
@@ -102,5 +107,5 @@ public class UsuariosModel {
         this.tipo = tipo;
     }
 
-
+    
 }
